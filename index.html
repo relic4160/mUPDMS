@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>UPDMS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+<link href="default.css?ver=1" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="default.js"></script>
+<script type="text/javascript">
+	function chkLogin() {
+		var id = document.getElementById("txt_id");
+		var pw = document.getElementById("txt_pw");
+
+		if (id.value.trim() == "") {
+			alert("아이디를 입력해주세요");
+			id.focus();
+			return false;
+		}
+
+		if (pw.value.trim() == "") {
+			alert("비밀번호를 입력해주세요");
+			pw.focus();
+			return false;
+		}
+
+		if (id.value.trim().toLowerCase() != "smstyle") {
+			alert("등록된 아이디가 아닙니다");
+			id.value = "";
+			id.focus();
+			return false;
+		}
+
+		if (Base64.encode(pw.value.trim()) != "dm5zdWEwNzgy") {
+			alert("비밀번호가 아닙니다");
+			pw.value = "";
+			pw.focus();
+			return false;
+		}
+
+		this.location.href = "./default.html";
+		return true;
+	}
+</script>
+</head>
+<body>
+<form name="form1" action="default.html" id="form1"><div id="login_wrap">
+	<div class="logo">UPDMS<span class="ver">4.6.1</span></div>
+	<div>
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+		<div class="bar4"></div>
+	</div>
+	<div id="login_box">
+		<a id="login_btn" onclick="return chkLogin();">LOGIN</a>
+		<input id="txt_id" type="text" name="txt_id" value="smstyle" class="login_input" onkeydown="if (event.keyCode == 13) { chkLogin(); }" />
+		<input id="txt_pw" type="password" name="txt_pw" class="login_input" onkeydown="if (event.keyCode == 13) { chkLogin(); }" placeholder="Password" autofocus />
+	</div>
+	<div id="login_copyright">Copyrightⓒ 2008-2018 SMSTYLE, All Rights Reserved.</div>
+</div></form>
+</body>
+</html>
