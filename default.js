@@ -27,8 +27,8 @@ var Base64 = {
 				enc4 = 64;
 			}
 			output = output +
-            this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
-            this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+				this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
+				this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
 		}
 		return output;
 	},
@@ -104,7 +104,7 @@ var Base64 = {
 		}
 		return string;
 	}
-}
+};
 
 //테이블의 세로병합 - TableRowspan(tableId, '0');
 function TableRowspan(oTable, checkColIndexs, startRowIdx, endRowIdx) {
@@ -119,12 +119,12 @@ function TableRowspan(oTable, checkColIndexs, startRowIdx, endRowIdx) {
 		for (var n = startIndex; n < endIndex; n++) {
 			var oCell = oTable.rows[n].cells[checkColIndex];
 
-			if (oCell != undefined) {
+			if (oCell !== undefined) {
 				var tValue = oCell.innerHTML; //현재 값 할당
 				var checkValue = checkCell ? checkCell.innerHTML : null; //비교기준 값 할당(기본값 null)
 
 				//비교기준 Cell의 값과 현재 Cell의 값을 비교
-				if (checkValue != tValue) {
+				if (checkValue !== tValue) {
 					if (checkCell && cntRowSpan > 1) {
 						checkCell.rowSpan = cntRowSpan;	// 병합값 설정
 					}
@@ -144,7 +144,11 @@ function TableRowspan(oTable, checkColIndexs, startRowIdx, endRowIdx) {
 	}
 
 	//오브젝트 삭제
-	for (var i = 0; i < delObjs.length; i++) {
-		delObjs[i].parentNode.removeChild(delObjs[i]);
+	for (var j = 0; j < delObjs.length; j++) {
+		delObjs[j].parentNode.removeChild(delObjs[j]);
 	}
+}
+
+function moveThisPage(url) {
+	window.location.href = url;
 }
