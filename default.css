@@ -83,7 +83,7 @@ body {
 
 /* default */
 div.category {
-	margin-bottom: 80px;
+	margin: 10px 10px 80px 10px;
 }
 
 label.title {
@@ -93,7 +93,7 @@ label.title {
 
 div.category div.tile {
 	display: inline-block;
-	width: 240px;
+	width: 250px;
 	height: 100px;
 	margin: 8px 8px 12px 8px;
 	padding: 12px 8px;
@@ -104,7 +104,7 @@ div.category div.tile {
 }
 
 div.category div.tile label {
-	font-size: 24px;
+	font-size: 30px;
 	text-decoration: none;
 }
 
