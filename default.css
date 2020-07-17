@@ -87,16 +87,16 @@ div.category {
 }
 
 label.title {
-	font-size: 50px;
+	font-size: 60px;
 	font-weight: bold;
 }
 
 div.category div.tile {
 	display: inline-block;
-	width: 300px;
+	width: 350px;
 	height: 100px;
 	margin: 8px 8px 12px 8px;
-	padding: 12px 8px;
+	padding: 24px 10px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	box-shadow: 3px 3px 6px #888;
@@ -104,7 +104,7 @@ div.category div.tile {
 }
 
 div.category div.tile label {
-	font-size: 36px;
+	font-size: 43px;
 	text-decoration: none;
 }
 
