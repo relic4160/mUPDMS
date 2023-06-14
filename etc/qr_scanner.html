@@ -52,7 +52,7 @@
 <body>
 	<div class="top">
 		<div class="navi_prev"><a href="../default.html" target="_self">PREV</a></div>
-		<div class="timestamp">2023-06-14 16:00:11</div>
+		<div class="timestamp">2023-06-14 16:01:11</div>
 	</div>
 	<div class="title">QR 스캐너</div>
 	<div id="loadingMessage">Unable to access video stream (please make sure you have a webcam enabled)</div>
@@ -113,8 +113,8 @@
 					const rk = k.padEnd(32, ' '); //AES256은 key길이가 32자여야 함
 					outputData.innerText = decodeByAES256(rk, code.data);
 				} else {
-					//outputMessage.hidden = false;
-					//outputData.parentElement.hidden = true;
+					outputMessage.hidden = false;
+					outputData.parentElement.hidden = true;
 				}
 			} else {
 				outputData.innerText = 'failed';
