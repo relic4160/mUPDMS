@@ -1,15 +1,12 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<html>
 <head>
+	<meta charset="utf-8">
 	<title>UPDMS - QR Scanner</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
-	<script src="https://github.com/cozmo/jsQR/blob/master/dist/jsQR.js"></script>
+	<script src="https://cozmo.github.io/jsQR/jsQR.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 	<style>
 		body {
-			font-family: 'Ropa Sans', sans-serif;
+			font-family: sans-serif;
 			color: #333;
 			max-width: 640px;
 			margin: 0 auto;
@@ -38,14 +35,10 @@
 			padding-bottom: 0;
 		}
 
-			#output div {
-				padding-bottom: 10px;
-				word-wrap: break-word;
-			}
-
-			#output span {
-				height: 300px;
-			}
+		#output div {
+			padding-bottom: 10px;
+			word-wrap: break-word;
+		}
 	</style>
 </head>
 <body>
@@ -106,12 +99,13 @@
 
 					const k = "key";
 					const rk = k.padEnd(32, " "); // AES256은 key 길이가 32자여야 함
-					//outputData.innerText = decodeByAES256(rk, code.data);
-					outputData.innerText = code.data;
+					outputData.innerText = decodeByAES256(rk, code.data);
 				} else {
 					outputMessage.hidden = false;
 					outputData.parentElement.hidden = true;
 				}
+			} else {
+				outputData.innerText = "failed";
 			}
 			requestAnimationFrame(tick);
 		}
@@ -124,7 +118,7 @@
 				mode: CryptoJS.mode.CBC
 			});
 			return cipher.toString(CryptoJS.enc.Utf8);
-		};
+		}
 	</script>
 </body>
 </html>
