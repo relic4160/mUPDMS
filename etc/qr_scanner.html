@@ -1,7 +1,9 @@
 ﻿<html>
 <head>
 	<meta charset="utf-8">
-	<title>UPDMS - QR Scanner</title>
+	<title>UPDMS - QR 스캐너</title>
+	<link href="../default.css" rel="stylesheet" />
+	<script src="../default.js"></script>
 	<script src="https://cozmo.github.io/jsQR/jsQR.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 	<style>
@@ -36,18 +38,28 @@
 		}
 
 		#output div {
-			padding-bottom: 10px;
+			padding-bottom: 12px;
 			word-wrap: break-word;
+			font-size: 32px;
+		}
+
+		#output span {
+			font-weight: bold;
+			letter-spacing: 0.4em;
 		}
 	</style>
 </head>
 <body>
-	<h1>UPDMS - QR Scanner</h1>
+	<div class="top">
+		<div class="navi_prev"><a href="../default.html" target="_self">PREV</a></div>
+		<div class="timestamp">2023-06-14 14:24:11</div>
+	</div>
+	<div class="title">QR 스캐너</div>
 	<div id="loadingMessage">Unable to access video stream (please make sure you have a webcam enabled)</div>
 	<canvas id="canvas" hidden></canvas>
 	<div id="output" hidden>
 		<div id="outputMessage">No QR code detected.</div>
-		<div hidden><b>Data:</b> <span id="outputData"></span></div>
+		<div hidden><span id="outputData"></span></div>
 	</div>
 	<script>
 		var video = document.createElement("video");
