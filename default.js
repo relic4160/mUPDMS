@@ -106,6 +106,16 @@ var Base64 = {
 	}
 };
 
+//decode
+function decodeByAES256(key, data) {
+	const cipher = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(key), {
+		iv: CryptoJS.enc.Utf8.parse(''),
+		padding: CryptoJS.pad.Pkcs7,
+		mode: CryptoJS.mode.CBC
+	});
+	return cipher.toString(CryptoJS.enc.Utf8);
+}
+
 //테이블의 세로병합 - TableRowspan(tableId, '0');
 function TableRowspan(oTable, checkColIndexs, startRowIdx, endRowIdx) {
 	var delObjs = Array();
