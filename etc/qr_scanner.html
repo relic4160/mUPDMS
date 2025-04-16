@@ -106,7 +106,7 @@
 					outputMessage.hidden = true;
 					outputData.parentElement.hidden = false;
 
-					const k = "updms";
+					const k = ApiConfig.QrCode.Encrypt.Key;
 					const rk = k.padEnd(32, " "); // AES256은 key 길이가 32자여야 함
 					outputData.innerText = decodeByAES256(rk, code.data);
 				} else {

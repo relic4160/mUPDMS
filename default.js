@@ -106,6 +106,19 @@ var Base64 = {
 	}
 };
 
+//외부 API
+var ApiConfig = {
+	//jquery-qrcode
+	QrCode: {
+		Encrypt: (function () {
+			return {
+				Key: 'updms',
+			};
+		})(),
+
+	},
+};
+
 //decode
 function decodeByAES256(key, data) {
 	const cipher = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(key), {
