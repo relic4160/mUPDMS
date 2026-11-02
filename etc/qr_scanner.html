@@ -107,10 +107,7 @@
 					outputMessage.hidden = true;
 					outputData.parentElement.hidden = false;
 
-					//const k = UpdmsConfig.Crypto.KEY;
-					//const rk = k.padEnd(32, " "); // AES256은 key 길이가 32자여야 함
 					outputData.innerText = await CryptoUtil.DecryptWithFixedKey(code.data, UpdmsConfig.Crypto.KEY);
-					//outputData.innerText = decodeByAES256(rk, code.data);
 				} else {
 					//outputMessage.hidden = false;
 					//outputData.parentElement.hidden = true;
