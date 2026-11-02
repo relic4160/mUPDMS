@@ -5,7 +5,6 @@
 	<link href="../default.css" rel="stylesheet" />
 	<script src="../default.js"></script>
 	<script src="https://cozmo.github.io/jsQR/jsQR.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 	<style>
 		body {
 			font-family: sans-serif;
@@ -52,7 +51,7 @@
 	<div class="top">
 		<div class="navi_prev"><a href="../default.html" target="_self">PREV</a></div>
 	</div>
-	<div class="title">QR 스캐너</div>
+	<div class="title">QR 스캐너(Web Crypto API)</div>
 	<div id="loadingMessage">Unable to access video stream (please make sure you have a webcam enabled)</div>
 	<canvas id="canvas" hidden></canvas>
 	<div id="output" hidden>
@@ -86,7 +85,7 @@
 			requestAnimationFrame(tick);
 		});
 
-		function tick() {
+		async function tick() {
 			loadingMessage.innerText = "Loading video..."
 			if (video.readyState === video.HAVE_ENOUGH_DATA) {
 				loadingMessage.hidden = true;
@@ -108,9 +107,10 @@
 					outputMessage.hidden = true;
 					outputData.parentElement.hidden = false;
 
-					const k = ApiConfig.QrCode.Encrypt.Key;
-					const rk = k.padEnd(32, " "); // AES256은 key 길이가 32자여야 함
-					outputData.innerText = decodeByAES256(rk, code.data);
+					//const k = UpdmsConfig.Crypto.KEY;
+					//const rk = k.padEnd(32, " "); // AES256은 key 길이가 32자여야 함
+					outputData.innerText = await CryptoUtil.DecryptWithFixedKey(code.data, UpdmsConfig.Crypto.KEY);
+					//outputData.innerText = decodeByAES256(rk, code.data);
 				} else {
 					//outputMessage.hidden = false;
 					//outputData.parentElement.hidden = true;

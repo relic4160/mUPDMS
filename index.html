@@ -7,7 +7,7 @@
 <link href="default.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="default.js"></script>
 <script type="text/javascript">
-	function chkLogin() {
+	async function chkLogin() {
 		var id = document.getElementById("txt_id");
 		var pw = document.getElementById("txt_pw");
 
@@ -30,7 +30,14 @@
 			return false;
 		}
 
-		if (Base64.encode(pw.value.trim()) != "dm5zdWEwNzgy") {
+		let output = null;
+		try {
+			output = await CryptoUtil.DecryptWithFixedKey("xyY7KoduDw--K2JEILt6zFlN_UyJyEZeLgsaoZN8itS1jKWm0Q", UpdmsConfig.Crypto.KEY);
+		} catch (err) {
+
+		}
+
+		if (pw.value.trim() !== output) {
 			alert("비밀번호가 아닙니다");
 			pw.value = "";
 			pw.focus();
