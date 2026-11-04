@@ -2,9 +2,41 @@
 	//암호화
 	Crypto: (function () {
 		return {
-			KEY: 'updms4', //★변경주의!! 변경전 암호화된 값을 복호화 할 수 없음
+			KEY: 'updms4', //★변경주의!! 변경전 암호화된 값을 복호화 할 수 없음 (변경시 ~\UPDMS4\Updms\Common\Js\updms-config.js도 같이 변경할 것)
 		};
 	})(),
+};
+
+var ObjUtil = {
+	//id앞에 #추가
+	AddSharp: function (id) {
+		if (id.indexOf('#') < 0) {
+			return id = '#' + id;
+		}
+		return id;
+	},
+	//id로 object 리턴
+	GetObj: function (id) {
+		//id가 점(.)으로 시작하면(css class이면)
+		if (StringUtil.IsStartChar(id, '.')) {
+			return $(id);
+		} else {
+			return $(ObjUtil.AddSharp(id));
+		}
+	},
+};
+
+var StringUtil = {
+	//str에 target_str으로 시작하는지 여부
+	//StringUtil.IsStartChar('abc', 'a'); → true
+	//StringUtil.IsStartChar('abc', 'b'); → false
+	IsStartChar: function (str, target_str) {
+		if (str !== undefined) {
+			return str.indexOf(target_str) === 0;
+		} else {
+			return false;
+		}
+	},
 };
 
 var CryptoUtil = {
@@ -137,48 +169,37 @@ var CryptoUtil = {
 
 };
 
-//테이블의 세로병합 - TableRowspan(tableId, '0');
-function TableRowspan(oTable, checkColIndexs, startRowIdx, endRowIdx) {
-	var delObjs = Array();
-	var startIndex = startRowIdx ? startRowIdx * 1 : 0;
-	var endIndex = endRowIdx ? endRowIdx : oTable.rows.length;
+var TableUtil = {
+	SetRowSpanPerColumnIndex: function (table_id, col_idx) {
+		let first_cell = null;
+		let match_count = 1;
 
-	for (var i = 0; i < checkColIndexs.length; i++) {
-		var checkColIndex = checkColIndexs[i] * 1; //비교할 Cell Index
-		var checkCell = null; //비교할 셀 오브젝트
-		var CntRowSpan = 1; // 병합할 행의 수(기본값:1)
-		for (var n = startIndex; n < endIndex; n++) {
-			var oCell = oTable.rows[n].cells[checkColIndex];
+		const table = ObjUtil.GetObj(table_id);
 
-			if (oCell !== undefined) {
-				var tValue = oCell.innerHTML; //현재 값 할당
-				var checkValue = checkCell ? checkCell.innerHTML : null; //비교기준 값 할당(기본값 null)
+		table.find('tr').each(function () {
+			const current_cell = $(this).find('td').eq(col_idx);
 
-				//비교기준 Cell의 값과 현재 Cell의 값을 비교
-				if (checkValue !== tValue) {
-					if (checkCell && cntRowSpan > 1) {
-						checkCell.rowSpan = cntRowSpan;	// 병합값 설정
-					}
-					checkCell = oCell; //비교기준 cell할당
-					cntRowSpan = 1;    //병합값 초기화
-				}
-				else {
-					delObjs[delObjs.length] = oCell; //삭제할 Object추가
-					cntRowSpan++;	//병합값을 1증가 시킨다.
-				}
+			if (!current_cell.length) {
+				return;
 			}
-		}
-		//마지막 병합값 설정은 for문에서 처리되지 않기때문에 한번더 실행한다.
-		if (checkCell) {
-			checkCell.rowSpan = cntRowSpan;
-		}
-	}
 
-	//오브젝트 삭제
-	for (var j = 0; j < delObjs.length; j++) {
-		delObjs[j].parentNode.removeChild(delObjs[j]);
-	}
-}
+			if (!first_cell) {
+				first_cell = current_cell;
+				return;
+			}
+
+			if (current_cell.text().trim() === first_cell.text().trim()) {
+				match_count++;
+				first_cell.attr('rowspan', match_count);
+				current_cell.hide();
+			} else {
+				first_cell = current_cell;
+				match_count = 1;
+			}
+		});
+	},
+
+};
 
 function moveThisPage(url) {
 	window.location.href = url;

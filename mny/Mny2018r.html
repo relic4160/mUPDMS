@@ -5,16 +5,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
 <link href="../default.css" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-4.0.0.min.js"></script>
 <script src="../default.js"></script>
 </head>
 <body>
 <div class="top">
 <div class="navi_prev"><a href="../default.html" target="_self">PREV</a></div>
-<div class="timestamp">2026-11-02 14:15:43</div>
+<div class="timestamp">2026-11-04 14:23:58</div>
 </div>
 <div class="title">월별예산대비지출(2026-11)</div>
 
-<table class="report">
+<table id="report_table_in" class="report">
 <tr>
 <th>구분</th>
 <th>등록일</th>
@@ -23,13 +24,14 @@
 <th>금액</th>
 </tr>
 <tr>
-<td class="data_c" rowspan="2">수입</td>
+<td class="data_c">수입</td>
 <td class="data_c">2026-11-01</td>
 <td>급여</td>
 <td>급여</td>
 <td class="money">5,007,860</td>
 </tr>
 <tr>
+<td class="data_c">수입</td>
 <td class="data_c">2026-11-01</td>
 <td>전월이월</td>
 <td>잔액 전월이월</td>
@@ -40,7 +42,7 @@
 <td class="money">5,346,209</td>
 </tr>
 </table>
-<table id="report_table" class="report">
+<table id="report_table_out" class="report">
 <tr>
 <th>구분</th>
 <th>계정</th>
@@ -210,7 +212,8 @@
 </tr>
 </table>
 <script>
-TableRowspan(report_table, '0');
+TableUtil.SetRowSpanPerColumnIndex('report_table_in', '0');
+TableUtil.SetRowSpanPerColumnIndex('report_table_out', '0');
 </script>
 <div class="navi_prev"><a href="../default.html" target="_self">PREV</a></div>
 <div class="navi_top"><a href="#">TOP</a></div>
